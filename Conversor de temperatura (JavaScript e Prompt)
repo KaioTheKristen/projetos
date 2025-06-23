@@ -1,0 +1,22 @@
+console.log("-----Conversor de temperatura-----");
+
+function paraCelsius (fahrenheit){
+    return 5 * (fahrenheit - 32) / 9
+}
+
+function paraFahrenheit (celsius){
+    return celsius / 5 * 9 + 32
+}
+
+const prompt = require('prompt-sync')();
+
+let celsius = parseFloat(Math.round(prompt("Digite o número em Celsius para converter para Fahrenheit:")));
+let fahrenheit = parseFloat(Math.round(prompt("Digite o número em Fahrenheit para converter para Celsius:")));
+
+console.log(
+    celsius + "°C", "=", Math.round(paraFahrenheit(celsius)) + "°F"
+)
+
+console.log(
+    fahrenheit + "°F", "=", Math.round(paraCelsius(fahrenheit)) + "°C"
+)
