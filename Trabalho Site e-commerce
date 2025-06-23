@@ -1,0 +1,166 @@
+const prompt = require('prompt-sync')();
+
+// inicio da função de contatos
+function contato(){
+    console.log(`
+        ================================
+       ▏       Computech Contatos       ▏
+       ▏                                ▏
+       ▏Telefone: (+55) 3333-3333       ▏
+       ▏                                ▏
+       ▏Email:                          ▏
+       ▏computech.tecnologia@gmail.com  ▏
+        ================================
+   `);
+    
+    saida = prompt("\n aperte [1] caso deseje sair:")
+    switch (saida){
+        case '1':
+            console.log("Saindo de Contatos...");
+            break;
+    }
+} // fim da função contatos
+
+// início da função carrinho
+let carrinho = []; // Array Carrinho
+
+// Função para adicionar itens ao array Carrinho
+function adicionarcarrinho() {
+    console.log("Adicionar produto no Carrinho");
+
+    let produto = prompt("Produto desejado:");
+    carrinho.push(produto);
+    console.log("Produto adicionado ao carrinho.");
+}
+
+// Função para remover itens do array Carrinho
+function removercarrinho() {
+    console.log("Remover produto do Carrinho");
+
+    let produto = prompt("Produto que deseja remover:");
+    let index = carrinho.indexOf(produto); // metodo para remover itens a partir de seu nome sem precisar especificar a localização
+
+    if (index !== -1) {
+        carrinho.splice(index, 1);
+        console.log("Produto retirado do carrinho com sucesso.");
+    } else {
+        console.log("Produto não encontrado no carrinho.");
+    }
+}
+
+// Função para ver os itens do array Carrinho
+function vercarrinho() {
+    console.log("\n --- Lista de Produtos ---");
+
+    if (carrinho.length === 0) {
+        console.log("Nenhum produto cadastrado");
+    } else {
+        carrinho.forEach((produto) => {
+            console.log(produto);
+        });
+    }
+}
+
+function carrinhohome () {
+do{
+
+// Menu inicial do Carrinho
+console.log(`
+    ================================
+   ▏       - 🛒Carrinho🛒 -         ▏
+   ▏                                ▏
+   ▏  0 - Sair do carrinho          ▏
+   ▏  1 - Adicionar ao Carrinho     ▏
+   ▏  2 - Remover do carrinho       ▏
+   ▏  3 - Ver carrinho              ▏
+    ================================
+`);
+
+opcao = prompt("\nEscolha uma das opções:");
+
+switch (opcao) {
+    case '0':
+        console.log("Saindo do carrinho..."); //adiciona texto na tela após escolher a opção sair
+        break;
+
+    case '1':
+        adicionarcarrinho(); // chama a função adicionar ao carrinho
+        break;
+
+    case '2':
+        removercarrinho(); // chama a função remover do carrinho
+        break;
+
+    case '3':
+         vercarrinho(); // chama a função ver o carrinho
+         break;
+
+    default:
+        console.log("Opção inválida! Tente novamente."); // opção caso o usuário coloque um número inválido
+        break;
+}
+}while (opcao !== '0'); // opção de fechamento do carrinho
+}// fim da função carrinho
+
+//inicio da função principal do site
+// Função para simular o acesso ao site
+function acessarSite() {
+    console.log("Bem-vindo ao Google!");
+    let endereco = prompt("Digite o endereço do site: ");
+    if (endereco.toLowerCase() === "www.computech.com.br") {
+        console.log("Carregando...");
+        return true;
+    } else {
+        console.log("Endereço incorreto.");
+        return false;
+    }
+}
+
+// Função para mostrar o menu e capturar a escolha do usuário
+function mostrarMenu() {
+    console.log(`
+         ================================
+        ▏         Computech              ▏
+        ▏                                ▏
+        ▏  1 - Navegar pelos produtos    ▏
+        ▏  2 - Acessar o Carrinho        ▏
+        ▏  3 - Entrar em contato         ▏
+        ▏  4 - Sair                      ▏
+         ================================
+    `);
+    let opcao = prompt("Escolha uma opção: ");
+    return opcao;
+}
+
+// Função principal para controlar o fluxo do programa
+function principal() {
+    if (acessarSite()) { // Só continua se o acesso ao site for bem-sucedido
+        let opcao;
+        do {
+            opcao = mostrarMenu();
+            switch (opcao) {
+                case '1':
+                    console.log("Navegando pelos produtos...");
+                    break;
+                case '2':
+                    console.log("Acessando o carrinho...");
+                    carrinhohome();
+                    break;
+                case '3':
+                    console.log("Entrando em contato...");
+                    contato();
+                    break;
+                case '4':
+                    console.log("Saindo...");
+                    break;
+                default:
+                    console.log("Opção inválida. Tente novamente.");
+            }
+        } while (opcao !== '4'); // Repete até o usuário escolher sair
+    } else {
+        console.log("Por favor, acesse o site correto para continuar.");
+    }
+}
+principal();
+//fim da função principal do site
+
